@@ -128,40 +128,41 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
               children: [
                 const CustomAppBar(title: "Attendance"),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      margin: EdgeInsets.only(top: attendance.isEmpty ? 0.0 : 30.0),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20.0),
-                            topLeft: Radius.circular(20.0)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: attendance.isEmpty
-                            ? const Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CircularProgressIndicator(
-                                  color: primaryColor,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    // height: MediaQuery.of(context).size.height,
+                    margin: EdgeInsets.only(top: attendance.isEmpty ? 0.0 : 30.0),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20.0),
+                          topLeft: Radius.circular(20.0)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20.0, right: 20.0, left: 20.0),
+                      child: attendance.isEmpty
+                          ? const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircularProgressIndicator(
+                                color: primaryColor,
+                              ),
+                              SizedBox(height: 14.0),
+                              Text(
+                                "Loading data...",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
                                 ),
-                                SizedBox(height: 14.0),
-                                Text(
-                                  "Loading data...",
-                                  style: TextStyle(
-                                    fontSize: 18.0,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            )
-                            : Column(
+                              ),
+                            ],
+                          )
+                          : SingleChildScrollView(
+                            child: Column(
                                 children: [
                                   ListView.builder(
+                                    physics: const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: attendance.length,
                                     itemBuilder: (context, index) {
@@ -173,30 +174,9 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                                       );
                                     },
                                   ),
-                                  // const AttendanceCard(
-                                  //     subject: "Big Data",
-                                  //     totalClasses: 10,
-                                  //     present: 7,
-                                  //     absent: 3),
-                                  // ListView.builder(
-                                  //   shrinkWrap: true,
-                                  //   itemCount: assignmentList.length,
-                                  //   itemBuilder: (context, index) {
-                                  //     return AssignmentCard(
-                                  //       subject: assignmentList[index].subject,
-                                  //       chapter: assignmentList[index].topic,
-                                  //       assignDate:
-                                  //       assignmentList[index].assignDate,
-                                  //       submissionDate:
-                                  //       assignmentList[index].lastDate,
-                                  //       submitted:
-                                  //       assignmentList[index].isSubmitted,
-                                  //     );
-                                  //   },
-                                  // ),
                                 ],
                               ),
-                      ),
+                          ),
                     ),
                   ),
                 )

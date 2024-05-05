@@ -32,7 +32,7 @@ class _EventsScreenState extends State<EventsScreen> {
     await firestore.get().then((value) => value.docs.forEach((element) {
           setState(() {
             eventList.add(
-                Events(element["title"], element["subtitle"], element["time"]));
+                Events(element["title"], element["description"], element["time"], element["image"]));
           });
           debugPrint("EventList: ${eventList.toString()}");
           debugPrint("EventList: ${eventList[0].title}");
@@ -78,6 +78,7 @@ class _EventsScreenState extends State<EventsScreen> {
                                   children: [
                                     const SizedBox(height: 10.0),
                                     ListView.builder(
+                                      physics: const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: eventList.length,
                                       itemBuilder:
@@ -86,6 +87,7 @@ class _EventsScreenState extends State<EventsScreen> {
                                           title: eventList[index].title!,
                                           date: eventList[index].time!,
                                           subtitle: eventList[index].subtitle!,
+                                          image: eventList[index].image!,
                                           heroTag: "event$index",
                                         );
                                       },

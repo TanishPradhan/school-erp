@@ -7,6 +7,7 @@ import 'package:school_erp/screens/assignment_screen.dart';
 import 'package:school_erp/screens/attendance/attendance_screen.dart';
 import 'package:school_erp/screens/attendance/enter_attendance.dart';
 import 'package:school_erp/screens/change_password_screen.dart';
+import 'package:school_erp/screens/events/create_event_screen.dart';
 import 'package:school_erp/screens/events/events_screen.dart';
 import 'package:school_erp/screens/fees_due_screen.dart';
 import 'package:school_erp/screens/login_screen.dart';
@@ -193,27 +194,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: Icons.collections_bookmark_rounded,
                                 buttonText: "Marks",
                                 onTap: () {
-                                  // ScaffoldMessenger.of(context).showSnackBar(
-                                  //   SnackBar(
-                                  //     content: const Text(
-                                  //       "Feature coming soon...",
-                                  //       style: TextStyle(
-                                  //         fontSize: 14.0,
-                                  //         fontWeight: FontWeight.w500,
-                                  //         color: Colors.white70,
-                                  //       ),
-                                  //     ),
-                                  //     shape: RoundedRectangleBorder(
-                                  //         borderRadius:
-                                  //             BorderRadius.circular(8.0)),
-                                  //     closeIconColor: Colors.white,
-                                  //     showCloseIcon: true,
-                                  //     behavior: SnackBarBehavior.floating,
-                                  //     backgroundColor: const Color(0xFF2855AE)
-                                  //         .withOpacity(0.9),
-                                  //   ),
-                                  // );
-                                  Navigator.push(context, MaterialPageRoute(builder: (_) => const EnterAttendance()));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: const Text(
+                                        "Feature coming soon...",
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white70,
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0)),
+                                      closeIconColor: Colors.white,
+                                      showCloseIcon: true,
+                                      behavior: SnackBarBehavior.floating,
+                                      backgroundColor: const Color(0xFF2855AE)
+                                          .withOpacity(0.9),
+                                    ),
+                                  );
+                                  // Navigator.push(context, MaterialPageRoute(builder: (_) => const EnterAttendance()));
                                 },
                               ),
                               HomeScreenSmallCard(

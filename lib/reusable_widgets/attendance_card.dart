@@ -16,7 +16,7 @@ class AttendanceCard extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.all(14.0),
-      margin: const EdgeInsets.only(bottom: 10.0),
+      margin: const EdgeInsets.only(bottom: 14.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.0),
         border: Border.all(color: Colors.black54)

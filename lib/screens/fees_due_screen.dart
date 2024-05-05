@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:school_erp/constants/colors.dart';
 
 import '../model/user_model.dart';
 import '../reusable_widgets/fees_due_card.dart';
@@ -102,25 +104,30 @@ class _FeesDueScreenState extends State<FeesDueScreen> {
             ),
             Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 20.0, left: 20.0, bottom: 10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.chevron_left,
-                        size: 30,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: 5.0),
-                      Text(
-                        "Fees Due",
-                        style: TextStyle(
-                          fontSize: 18.0,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(top: 20.0, left: 20.0, bottom: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.chevron_left,
+                          size: 30,
                           color: Colors.white,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: 5.0),
+                        Text(
+                          "Fees Due",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
@@ -147,19 +154,43 @@ class _FeesDueScreenState extends State<FeesDueScreen> {
                                 openCheckout();
                               },
                             ),
-                            const FeesDueCard(
+                            FeesDueCard(
                               receiptNo: "#98671",
                               month: "February",
                               paymentDate: "12 Feb 24",
                               paymentMode: "Online",
                               amount: "₹999",
+                              onTap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: const Text("Feature coming soon..."),
+                                  showCloseIcon: true,
+                                  backgroundColor: primaryColor.withOpacity(0.9),
+                                  behavior: SnackBarBehavior.floating,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          10.0)),
+                                ));
+                              },
                             ),
-                            const FeesDueCard(
+                            FeesDueCard(
                               receiptNo: "#98671",
                               month: "January",
                               paymentDate: "2 January 24",
                               paymentMode: "Card",
                               amount: "₹999",
+                              onTap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: const Text("Feature coming soon..."),
+                                  showCloseIcon: true,
+                                  backgroundColor: primaryColor.withOpacity(0.9),
+                                  behavior: SnackBarBehavior.floating,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          10.0)),
+                                ));
+                              },
                             ),
                           ],
                         ),

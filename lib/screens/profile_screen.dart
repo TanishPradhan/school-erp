@@ -120,17 +120,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height / 1.165,
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.only(top: 30.0),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20.0),
-                            topLeft: Radius.circular(20.0)),
-                      ),
+                  child: Container(
+                    // height: MediaQuery.of(context).size.height / 1.165,
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(top: 30.0),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20.0),
+                          topLeft: Radius.circular(20.0)),
+                    ),
+                    child: SingleChildScrollView(
                       child: Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Column(

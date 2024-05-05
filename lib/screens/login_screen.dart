@@ -98,6 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         CommonTextField(
                           controller: passwordController,
                           obscureText: true,
+                          maxLines: 1,
                           textCapitalization: TextCapitalization.none,
                         ),
                         const SizedBox(height: 30.0),

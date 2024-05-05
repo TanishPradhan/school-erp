@@ -7,6 +7,7 @@ class EventCard extends StatelessWidget {
   final String title;
   final String date;
   final String subtitle;
+  final String image;
   final String heroTag;
 
   const EventCard({
@@ -14,6 +15,7 @@ class EventCard extends StatelessWidget {
     required this.title,
     required this.date,
     required this.subtitle,
+    required this.image,
     required this.heroTag,
   });
 
@@ -37,6 +39,7 @@ class EventCard extends StatelessWidget {
                 date: date,
                 title: title,
                 subtitle: subtitle,
+                image: image,
                 heroTag: heroTag,
               ),
             ));
@@ -61,6 +64,7 @@ class EventCard extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Hero(
                   tag: heroTag,
@@ -71,6 +75,12 @@ class EventCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(14.0),
                       color: const Color(0xFFCACACA),
                     ),
+                    child: image == ""
+                        ? null
+                        : Image.network(
+                            image,
+                            fit: BoxFit.cover,
+                          ),
                   ),
                 ),
                 const SizedBox(width: 14.0),

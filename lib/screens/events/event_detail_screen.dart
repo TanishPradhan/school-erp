@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 class EventDetailScreen extends StatelessWidget {
   final String date;
   final String title;
   final String subtitle;
+  final String image;
   final String heroTag;
 
   const EventDetailScreen({
@@ -12,6 +14,7 @@ class EventDetailScreen extends StatelessWidget {
     required this.date,
     required this.title,
     required this.subtitle,
+    required this.image,
     required this.heroTag,
   });
 
@@ -28,7 +31,9 @@ class EventDetailScreen extends StatelessWidget {
                   Hero(
                     tag: heroTag,
                     child: Container(
+                      width: MediaQuery.of(context).size.width,
                       color: const Color(0xFFCACACA),
+                      child: image == "" ? null : Image.network(image, fit: BoxFit.cover,),
                     ),
                   ),
                   GestureDetector(
@@ -40,7 +45,7 @@ class EventDetailScreen extends StatelessWidget {
                       child: Icon(
                         Icons.chevron_left_rounded,
                         size: 40,
-                        color: Colors.white,
+                        color: Colors.black54,
                       ),
                     ),
                   ),

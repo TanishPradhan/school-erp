@@ -7,7 +7,9 @@ class CommonTextField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final bool? obscureText;
   final TextCapitalization? textCapitalization;
-  const CommonTextField({super.key, required this.controller, this.textInputAction, this.obscureText, this.textCapitalization});
+  final VoidCallback? onTap;
+  final int? maxLines;
+  const CommonTextField({super.key, required this.controller, this.textInputAction, this.obscureText, this.textCapitalization, this.onTap, this.maxLines});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,8 @@ class CommonTextField extends StatelessWidget {
       controller: controller,
       cursorColor: primaryColor,
       textInputAction: textInputAction,
+      scrollPadding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).viewInsets.bottom),
       textCapitalization: textCapitalization ?? TextCapitalization.sentences,
       obscureText: obscureText ?? false,
       decoration: const InputDecoration(
@@ -33,6 +37,8 @@ class CommonTextField extends StatelessWidget {
         ),
         // errorText: _errorText(),
       ),
+      onTap: onTap,
+      maxLines: maxLines,
     );
   }
 }
