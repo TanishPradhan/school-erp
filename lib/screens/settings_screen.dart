@@ -8,9 +8,14 @@ import '../model/user_model.dart';
 import '../reusable_widgets/loader.dart';
 import 'login_screen.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     Box<UserModel> userBox = Hive.box<UserModel>('users');
@@ -118,10 +123,13 @@ class SettingsScreen extends StatelessWidget {
                 SettingsOption(
                   optionName: "Logout",
                   onTap: () {
+                    //loading dialog
                     showDialog(
                         context: context,
                         builder: (BuildContext context) =>
                             const LoaderDialog());
+
+                    //clears user data from hive box
                     userBox.clear().then(
                           (value) => Navigator.pushAndRemoveUntil(
                               context,

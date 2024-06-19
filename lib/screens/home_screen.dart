@@ -75,217 +75,212 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            SingleChildScrollView(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20.0, right: 20.0, top: 50.0),
-                      child: Row(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20.0, right: 20.0, top: 50.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Hi ${userBox.get("user")?.name?.split(" ")[0] ?? "Student"}",
+                            style: const TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            "Enrollment: ${userBox.get("user")?.enrollmentNumber ?? "Null"}",
+                            style: const TextStyle(
+                              color: Colors.white54,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w400,
+                              height: 1.0,
+                            ),
+                          ),
+                          const SizedBox(height: 20.0),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14.0, vertical: 6.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: Text(
+                              userBox.get("user")?.academicYear ?? "Null",
+                              style: const TextStyle(
+                                color: Color(0xFF6184C7),
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const SettingsScreen(),
+                            ),
+                          );
+                        },
+                        child: const CircleAvatar(
+                          radius: 30.0,
+                          child: Icon(
+                            Icons.person,
+                            size: 40,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const SizedBox(height: 30.0),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Hi ${userBox.get("user")?.name?.split(" ")[0] ?? "Student"}",
-                                style: const TextStyle(
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                "Enrollment: ${userBox.get("user")?.enrollmentNumber ?? "Null"}",
-                                style: const TextStyle(
-                                  color: Colors.white54,
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.0,
-                                ),
-                              ),
-                              const SizedBox(height: 20.0),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 14.0, vertical: 6.0),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Text(
-                                  userBox.get("user")?.academicYear ?? "Null",
-                                  style: const TextStyle(
-                                    color: Color(0xFF6184C7),
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) =>
+                                          const AttendanceScreen()));
+                            },
+                            child: const HomeScreenMasterCard(
+                                attendance: true),
                           ),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => const SettingsScreen(),
+                                  builder: (_) => const FeesDueScreen(),
                                 ),
                               );
                             },
-                            child: const CircleAvatar(
-                              radius: 30.0,
-                              child: Icon(
-                                Icons.person,
-                                size: 40,
+                            child: const HomeScreenMasterCard(
+                              attendance: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20.0),
+                      Wrap(
+                        runAlignment: WrapAlignment.spaceBetween,
+                        alignment: WrapAlignment.spaceBetween,
+                        runSpacing: 20.0,
+                        spacing: 20.0,
+                        children: [
+                          HomeScreenSmallCard(
+                            icon: Icons.collections_bookmark_rounded,
+                            buttonText: "Marks",
+                            onTap: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                    "Feature coming soon...",
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(8.0)),
+                                  closeIconColor: Colors.white,
+                                  showCloseIcon: true,
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: const Color(0xFF2855AE)
+                                      .withOpacity(0.9),
+                                ),
+                              );
+                              // Navigator.push(context, MaterialPageRoute(builder: (_) => const EnterAttendance()));
+                            },
+                          ),
+                          HomeScreenSmallCard(
+                            icon: Icons.person,
+                            buttonText: "Assignment",
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const AssignmentScreen(),
                               ),
                             ),
-                          )
+                          ),
+                          // HomeScreenSmallCard(
+                          //   icon: Icons.lock,
+                          //   buttonText: "Change Password",
+                          //   onTap: () => Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (_) => const ChangePasswordScreen(),
+                          //     ),
+                          //   ),
+                          // ),
+                          HomeScreenSmallCard(
+                            icon: Icons.chat,
+                            buttonText: "Ask Doubts",
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const AskDoubtScreen(),
+                              ),
+                            ),
+                          ),
+                          HomeScreenSmallCard(
+                            icon: Icons.edit_calendar_rounded,
+                            buttonText: "Events",
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const EventsScreen(),
+                              ),
+                            ),
+                          ),
+                          // HomeScreenSmallCard(
+                          //   icon: Icons.logout_rounded,
+                          //   buttonText: "Logout",
+                          //   onTap: () {
+                          //     showDialog(
+                          //         context: context,
+                          //         builder: (BuildContext context) =>
+                          //             const LoaderDialog());
+                          //     userBox.clear().then(
+                          //           (value) =>
+                          //               Navigator.pushAndRemoveUntil(
+                          //                   context,
+                          //                   MaterialPageRoute(
+                          //                     builder: (_) =>
+                          //                         const LoginScreen(),
+                          //                   ),
+                          //                   (route) => false),
+                          //         );
+                          //   },
+                          // ),
                         ],
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const SizedBox(height: 30.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) =>
-                                              const AttendanceScreen()));
-                                },
-                                child: const HomeScreenMasterCard(
-                                    attendance: true),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => const FeesDueScreen(),
-                                    ),
-                                  );
-                                },
-                                child: const HomeScreenMasterCard(
-                                  attendance: false,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 20.0),
-                          Wrap(
-                            runAlignment: WrapAlignment.spaceBetween,
-                            alignment: WrapAlignment.spaceBetween,
-                            runSpacing: 20.0,
-                            spacing: 20.0,
-                            children: [
-                              HomeScreenSmallCard(
-                                icon: Icons.collections_bookmark_rounded,
-                                buttonText: "Marks",
-                                onTap: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: const Text(
-                                        "Feature coming soon...",
-                                        style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.white70,
-                                        ),
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0)),
-                                      closeIconColor: Colors.white,
-                                      showCloseIcon: true,
-                                      behavior: SnackBarBehavior.floating,
-                                      backgroundColor: const Color(0xFF2855AE)
-                                          .withOpacity(0.9),
-                                    ),
-                                  );
-                                  // Navigator.push(context, MaterialPageRoute(builder: (_) => const EnterAttendance()));
-                                },
-                              ),
-                              HomeScreenSmallCard(
-                                icon: Icons.person,
-                                buttonText: "Assignment",
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => const AssignmentScreen(),
-                                  ),
-                                ),
-                              ),
-                              // HomeScreenSmallCard(
-                              //   icon: Icons.lock,
-                              //   buttonText: "Change Password",
-                              //   onTap: () => Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (_) => const ChangePasswordScreen(),
-                              //     ),
-                              //   ),
-                              // ),
-                              HomeScreenSmallCard(
-                                icon: Icons.chat,
-                                buttonText: "Ask Doubts",
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => const AskDoubtScreen(),
-                                  ),
-                                ),
-                              ),
-                              HomeScreenSmallCard(
-                                icon: Icons.edit_calendar_rounded,
-                                buttonText: "Events",
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => const EventsScreen(),
-                                  ),
-                                ),
-                              ),
-                              // HomeScreenSmallCard(
-                              //   icon: Icons.logout_rounded,
-                              //   buttonText: "Logout",
-                              //   onTap: () {
-                              //     showDialog(
-                              //         context: context,
-                              //         builder: (BuildContext context) =>
-                              //             const LoaderDialog());
-                              //     userBox.clear().then(
-                              //           (value) =>
-                              //               Navigator.pushAndRemoveUntil(
-                              //                   context,
-                              //                   MaterialPageRoute(
-                              //                     builder: (_) =>
-                              //                         const LoginScreen(),
-                              //                   ),
-                              //                   (route) => false),
-                              //         );
-                              //   },
-                              // ),
-                            ],
-                          ),
-                          const SizedBox(height: 20.0),
-                        ],
-                      ),
-                    ),
-                  ],
+                      const SizedBox(height: 20.0),
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),

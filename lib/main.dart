@@ -1,7 +1,9 @@
+import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:school_erp/bloc/bloc_observable.dart';
 import 'package:school_erp/model/user_model.dart';
 import 'package:school_erp/screens/home_screen.dart';
 import 'package:school_erp/screens/login_screen.dart';
@@ -13,6 +15,9 @@ void main() async {
   await Hive.openBox<UserModel>('users');
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  Bloc.observer = const ObserverBloc();
+
   runApp(const MyApp());
 }
 
